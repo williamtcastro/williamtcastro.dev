@@ -1,37 +1,53 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import BentoItem from '../components/BentoItem.astro';
 ---
 
 <Layout title="Hi I'm William">
-	<main>
-		<h1>Hi I'm <span class="text-gradient">William</span></h1>
-	</main>
+  <main>
+    <BentoItem gridArea="photo" />
+    <BentoItem gridArea="github" />
+    <BentoItem gridArea="instagram" />
+    <BentoItem gridArea="name">
+      <h1>
+        Hi I'm <span class="text-gradient">William</span>
+      </h1>
+    </BentoItem>
+    <BentoItem gridArea="stack" />
+    <BentoItem gridArea="years" />
+  </main>
 </Layout>
 
 <style>
-	main {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		height: 100vh;
-		width: 100vw;
-		color: white;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
+  main {
+    display: grid;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    color: white;
+
+    grid-template-areas:
+      'photo github instagram'
+      'name name name'
+      'stack stack years';
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+
+  div:nth-of-type(1) {
+    grid-column: 1 / 2;
+  }
 </style>
