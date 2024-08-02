@@ -1,17 +1,44 @@
 ---
-const { gridArea } = Astro.props;
+const { gridArea, url, bgColor } = Astro.props;
+
+const backgroundColor = bgColor ?? "rgba(52, 56, 64, 0.15)";
 ---
 
-<div><slot /></div>
+<a id={gridArea} href={url} target="_blank"><slot /></a>
 
-<style>
-  div {
-    grid-area: ${gridArea};
+<style
+  define:vars={{ area: gridArea, bgColor: backgroundColor }}
+>
+  a {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    grid-area: var(--area);
     text-align: center;
     padding: 20px;
     margin: 10px;
     border-radius: 18px;
-    background: rgba(52, 56, 64, 0.15);
+    background: var(--bgColor);
     border: 2px solid rgb(255, 255, 255, 0.1);
+    min-width: 10rem;
+    min-height: 10rem;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    color: white;
   }
+
+  a:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transition: 200ms ease-in-out;
+  }
+
+  @media (max-width: 700px) {
+    a {
+      
+      width: 100%;
+    }
+  }
+
 </style>
