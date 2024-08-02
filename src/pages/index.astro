@@ -1,37 +1,86 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import BentoItem from '../components/BentoItem.astro';
 ---
 
 <Layout title="Hi I'm William">
-	<main>
-		<h1>Hi I'm <span class="text-gradient">William</span></h1>
-	</main>
+  <main>
+    <div class="bento">
+      <BentoItem 
+        gridArea="linkedin" 
+        url="https://wly.lol/job">
+        <img class="logo" src="/linkedin.png" />
+      </BentoItem>
+      <BentoItem gridArea="github" url="https://wly.lol/git">
+        <img class="logo" src="/github.png" />
+      </BentoItem>
+      <BentoItem gridArea="insta" url="https://wly.lol/insta">
+        <img class="logo" src="/insta.png" />
+      </BentoItem>
+      <BentoItem gridArea="name" onClick={() => console.log('hello')}>
+        <h1>
+          Hi I'm <span class="text-gradient">William</span>
+        </h1>
+      </BentoItem>
+      <BentoItem gridArea="carthinghax"  url="https://wly.lol/carthinghax">
+        <img class="logo" src="/carthinghax.png" style="border-radius: 1rem;" />
+      </BentoItem>
+    </div>
+  </main>
 </Layout>
 
 <style>
-	main {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		height: 100vh;
-		width: 100vw;
-		color: white;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100%;
+    width: 100%;
+  }
+  .bento {
+    display: grid;
+    text-align: center;
+    grid-template-areas:
+    'github name name'
+      'linkedin insta carthinghax';
+    gap: .25rem;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+
+  .logo {
+    width: 5rem;
+    height: 5rem;
+  }  
+
+  @media (max-width: 700px) {
+    main {
+      padding-top: 1rem;
+      height: unset;
+    }
+  .bento {
+    grid-template-areas:
+      'name'
+      'github'
+      'linkedin'
+      'insta'
+      'carthinghax';
+    gap: .25rem;
+    width: 100%;
+  }
+}
 </style>
