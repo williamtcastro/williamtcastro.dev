@@ -3,7 +3,15 @@ const { gridArea, url, bgColor, style } = Astro.props;
 const backgroundColor = bgColor ?? "rgba(52, 56, 64, 0.3)";
 ---
 
-<a id={gridArea} href={url} target="_blank"><slot /></a>
+<a 
+  id={gridArea} 
+  href={url} 
+  target="_blank" 
+  data-umami-event="outbound-link-click"
+  data-umami-event-url={url}
+  >
+    <slot />
+</a>
 
 <style
   define:vars={{ area: gridArea, bgColor: backgroundColor,  }}
